@@ -1,5 +1,6 @@
 using Academy.Domain.Exceptions;
 using Academy.Domain.Tests.Builder;
+using Academy.Domain.Tests.Factories;
 using FluentAssertions;
 
 namespace Academy.Domain.Tests;
@@ -13,13 +14,13 @@ public class CourseTests
     [Fact]
     public void Constructor_ShouldConstructCourseProperly()
     {
-        // arrange
         //var guid = IdentifierFixture.Id;
         const int id = 1;
         const string name = "tdd & bdd";
         const bool isOnline = true;
         const double tuition = 600;
         const string instructor = "hossein";
+
         var course = _courseBuilder.Build();
 
 
@@ -29,6 +30,19 @@ public class CourseTests
         course.IsOnline.Should().Be(isOnline);
         course.Tuition.Should().Be(tuition);
         course.Instructor.Should().Be(instructor);
+        course.Sections.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void AddSection_ShouldAddNewSectionToSections_WhenIdAndNamePassed()
+    {
+        //arrange
+        var course = _courseBuilder.Build();
+        var addSection = SectionFactory.Create();
+        //act
+        course.AddSection(addSection);
+        //assert
+        course.Sections.Should().ContainEquivalentOf(addSection);
     }
 
     [Fact]

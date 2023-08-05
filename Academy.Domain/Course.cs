@@ -37,4 +37,9 @@ public class Course
         if (string.IsNullOrWhiteSpace(name))
             throw new CourseNameIsInvalidException();
     }
+
+    public void AddSection(Section addSection)
+    {
+        Sections.Add(addSection);
+    }
 }
