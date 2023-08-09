@@ -42,4 +42,15 @@ public class Course
     {
         Sections.Add(addSection);
     }
+
+    // override object.Equals
+    public override bool Equals(object obj)
+    {
+        if (!(obj is Course course))
+            return false;
+
+        return Id == course.Id;
+    }
+
+
 }

@@ -1,7 +1,10 @@
+using Academy.Domain.Unit.Tests.CollectionFixtures;
+
 using FluentAssertions;
 
 namespace Academy.Domain.Tests.Tests;
 
+[Collection("Database Collection")]// ICollectionFixture
 public class SectionTests
 {
     [Fact]
