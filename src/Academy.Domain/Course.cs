@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Academy.Domain.Exceptions;
 
 namespace Academy.Domain;
