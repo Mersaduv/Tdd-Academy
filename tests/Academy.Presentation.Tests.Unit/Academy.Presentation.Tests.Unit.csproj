@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="Fluentassertions" Version="6.11.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="NSubstitute" Version="5.0.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Academy.Infrastructure\Academy.Infrastructure.csproj" />
-    <ProjectReference Include="..\Academy.Domain.Tests.Unit\Academy.Domain.Unit.Tests.csproj" />
+    <ProjectReference Include="..\..\src\Academy.Application\Academy.Application.csproj" />
+    <ProjectReference Include="..\..\src\Academy.Presentation\Academy.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

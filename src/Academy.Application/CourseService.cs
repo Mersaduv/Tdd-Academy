@@ -20,17 +20,17 @@ public class CourseService : ICourseService
         if (_courseRepository.GetBy(command.Name) != null)
             throw new DuplicatedCourseNameException();
 
-        var course = new Course(command.Id, command.Name, command.IsOnline, command.Tuition, command.Instructor);
-        _courseRepository.Create(course);
-        return course.Id;
+        var course = new Course(command.Name, command.IsOnline, command.Tuition, command.Instructor);
+        return _courseRepository.Create(course);
     }
-    public void Edit(EditCourseDto command)
+    public int Edit(EditCourseDto command)
     {
         if (_courseRepository.GetBy(command.Id) == null)
             throw new CourseNotExistsException();
-        var course = new Course(command.Id, command.Name, command.IsOnline, command.Tuition, command.Instructor);
+        var course = new Course(command.Name, command.IsOnline, command.Tuition, command.Instructor);
         _courseRepository.Delete(command.Id);
-        _courseRepository.Create(course);
+
+        return _courseRepository.Create(course);
     }
 
     public void Delete(int id)

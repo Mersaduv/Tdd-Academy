@@ -22,17 +22,15 @@ public class CourseTests : IClassFixture<IdentifierFixture>// IClassFixture
     {
 
         //  var guid = IdentifierFixture.Id; // IClassFixture 
-        const int id = 1;
         const string name = "tdd & bdd";
         const bool isOnline = true;
         const double tuition = 600;
-        const string instructor = "hossein";
+        const string instructor = "mrsd";
 
         var course = _courseBuilder.Build();
 
 
         //assert
-        course.Id.Should().Be(id);
         course.Name.Should().Be(name);
         course.IsOnline.Should().Be(isOnline);
         course.Tuition.Should().Be(tuition);
@@ -72,8 +70,10 @@ public class CourseTests : IClassFixture<IdentifierFixture>// IClassFixture
         //arrange
         const int sameId = 1;
         var courseBuilder = new CourseTestBuilder();
-        var course1 = courseBuilder.WithId(sameId).Build();
-        var course2 = courseBuilder.WithId(sameId).Build();
+        var course1 = courseBuilder.Build();
+        course1.Id = sameId;
+        var course2 = courseBuilder.Build();
+        course2.Id = sameId;
 
         //act
         var actual = course1.Equals(course2);
@@ -88,8 +88,10 @@ public class CourseTests : IClassFixture<IdentifierFixture>// IClassFixture
     {
         //arrange
         var courseBuilder = new CourseTestBuilder();
-        var course1 = courseBuilder.WithId(1).Build();
-        var course2 = courseBuilder.WithId(2).Build();
+        var course1 = courseBuilder.Build();
+        course1.Id = 1;
+        var course2 = courseBuilder.Build();
+        course2.Id = 2;
 
         //act
         var actual = course1.Equals(course2);

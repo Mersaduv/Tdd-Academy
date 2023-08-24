@@ -46,10 +46,11 @@ public class CourseServiceTests
     public void Should_CreateNewCourseAndReturnId()
     {
         var command = SomeCreateCourse();
+        _courseRepository.Create(default).ReturnsForAnyArgs(10);
 
         var actual = _courseService.Create(command);
 
-        actual.Should().Be(command.Id);
+        actual.Should().BeGreaterThan(0);
     }
 
     [Fact]
@@ -92,6 +93,19 @@ public class CourseServiceTests
             Instructor = "mersad",
             IsOnline = true
         };
+    }
+
+    [Fact]
+    public void Should_ReturnIdOfUpdatedRecord()
+    {
+        var command = SomeEditCourse();
+        _courseRepository.Create(default).ReturnsForAnyArgs(10);
+        var course = _courseTestBuilder.Build();
+        _courseRepository.GetBy(Arg.Any<int>()).Returns(course);
+
+        var actual = _courseService.Edit(command);
+
+        actual.Should().BeGreaterThan(0);
     }
 
     [Fact]

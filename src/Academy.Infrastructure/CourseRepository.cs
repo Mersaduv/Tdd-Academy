@@ -12,15 +12,19 @@ public class CourseRepository : ICourseRepository
         _context = context;
     }
 
-    public void Create(Course course)
+    public int Create(Course course)
     {
         _context.Courses.Add(course);
         _context.SaveChanges();
+        return course.Id;
     }
 
     public bool Delete(int id)
     {
-        throw new NotImplementedException();
+        var course = _context.Courses.Find(id);
+        _context.Courses.Remove(course!);
+        _context.SaveChanges();
+        return true;
     }
 
     public List<Course> GetAll()
@@ -30,12 +34,13 @@ public class CourseRepository : ICourseRepository
 
     public Course GetBy(int id)
     {
-        throw new NotImplementedException();
+        return _context.Courses.Find(id);
     }
 
     public Course GetBy(string name)
     {
-        throw new NotImplementedException();
+        var result = _context.Courses.FirstOrDefault(c => c.Name == name);
+        return result;
     }
 
 
